@@ -1,0 +1,65 @@
+ALGORITHM methodeone
+VAR
+    set1,set2 : ARRAY_OF INTEGER[ ];
+    i,j : INTEGER;
+    sum : INTEGER :=  0;
+    exist: BOOLEAN;
+BEGIN
+    FOR i FROM 0 TO set1.length-1 DO
+        exist:= FALSE;
+        FOR j FROM 0 TO set2.length-1 DO
+            IF(set1[i] = set2[j]) THEN
+                exist := TRUE
+                BREAK
+            END
+        END FOR
+        IF (NOT exist) THEN
+            sum := sum + set1[i];
+        END IF
+    END FOR 
+
+    FOR i FROM 0 TO set2.length-1 DO
+        exist := FALSE;
+        FOR j FROM 0 TO set1.length-1 DO
+            IF(set2[i] = set1[j]) THEN
+                exist := TRUE
+                BREAK
+            END
+        END FOR
+        IF (NOT exist) THEN
+            sum := sum + set2[i]
+        END IF
+    END FOR
+
+    Write(sum)
+END
+///////////////////////
+ALGORITHM methodetwo
+VAR
+    tab1,tab2 : ARRAY_OF INTEGER[ ];
+    set_keys : ARRAY_OF INTEGER[ ];
+    dict := HASH_TABLE<INTEGER,INTEGER>;
+    i,count : INTEGER; : 
+    sum : INTEGER := 0;
+BEGIN
+
+FOR i FROM 0 TO tab1.length -1 STEP 1  DO
+        IF (dict.lookup(tab1[i]) = TRUE) THEN
+            count := dict.get(tab1[i]);
+            dict.insert(tab1[i],count+1);
+        ELSE
+            dict.insert(tab1[i],1);
+        END_IF
+    END FOR
+
+FOR i FROM 0 TO set2.length -1 STEP 1  DO
+        IF (dict.lookup(tab2[i]) = TRUE) THEN
+            count := dict.get(tab2[i]);
+            dict.insert(tab2[i],count+1);
+        ELSE
+            dict.insert(tab2[i],1);
+        END IF
+    END FOR
+sum := sum +tab1[i]+tab2[i]
+END
+    
